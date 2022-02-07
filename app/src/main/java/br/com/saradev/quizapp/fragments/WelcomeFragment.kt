@@ -20,17 +20,24 @@ class WelcomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View = FragmentWelcomeBinding.inflate(inflater, container, false).apply {
         _binding = this
-        enterQuiz()
     }.root
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        enterQuiz()
+    }
 
     private fun enterQuiz() {
 
         binding.button.setOnClickListener {
+            val username = binding.txtFieldInputName.text.toString()
+
             binding.run {
                 if (txtFieldInputName.text.toString().isEmpty()) {
                     Toast.makeText(context, "Please enter your name", Toast.LENGTH_SHORT).show()
                 } else {
-                    findNavController().navigate(R.id.quizFragment)
+                    val action = WelcomeFragmentDirections.actionWelcomeFragmentToQuizFragment(username)
+                    findNavController().navigate(action)
                 }
             }
         }

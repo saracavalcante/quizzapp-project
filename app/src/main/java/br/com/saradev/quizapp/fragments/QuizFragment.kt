@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import br.com.saradev.quizapp.R
 import br.com.saradev.quizapp.databinding.FragmentQuizBinding
 import br.com.saradev.quizapp.model.Question
@@ -24,6 +26,8 @@ class QuizFragment : Fragment(), View.OnClickListener {
     private var questionList: List<Question>? = null
     private var selectedOptionPosition: Int = 0
     private var correctAnswers: Int = 0
+
+    private val args: QuizFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -124,9 +128,10 @@ class QuizFragment : Fragment(), View.OnClickListener {
                             configureProgressBar()
                         }
                         else -> {
-                            Toast.makeText(context,
-                                "You successfuly completed the Quiz!",
-                                Toast.LENGTH_SHORT).show()
+                            val username = args.username
+                            val totalQuestion = questionList!!.size
+                            val action = QuizFragmentDirections.actionQuizFragmentToResultFragment(username, correctAnswers, totalQuestion)
+                            findNavController().navigate(action)
                         }
                     }
 
