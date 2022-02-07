@@ -52,7 +52,7 @@ class QuizFragment : Fragment(), View.OnClickListener {
     }
 
     private fun setQuestion() {
-        val question = questionList!![mCurrentPosition - 1]
+        var question = questionList!![mCurrentPosition - 1]
 
         defaultOptionsView()
 
@@ -75,10 +75,8 @@ class QuizFragment : Fragment(), View.OnClickListener {
     }
 
     private fun configureProgressBar() {
-        binding.apply {
-            progressBar.progress = mCurrentPosition
-            tvProgress.text = "$mCurrentPosition/${progressBar.max}"
-        }
+        binding.progressBar.progress = mCurrentPosition
+        binding.tvProgress.text = "$mCurrentPosition/${binding.progressBar.max}"
     }
 
     private fun defaultOptionsView() {
@@ -122,6 +120,7 @@ class QuizFragment : Fragment(), View.OnClickListener {
                     when {
                         mCurrentPosition <= questionList!!.size -> {
                             setQuestion()
+                            configureProgressBar()
                         }
                         else -> {
                             Toast.makeText(context,
