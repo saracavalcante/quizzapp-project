@@ -23,6 +23,7 @@ class QuizFragment : Fragment(), View.OnClickListener {
     private var mCurrentPosition: Int = 1
     private var questionList: List<Question>? = null
     private var selectedOptionPosition: Int = 0
+    private var correctAnswers: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -134,6 +135,8 @@ class QuizFragment : Fragment(), View.OnClickListener {
 
                     if (question!!.correctAnswer != selectedOptionPosition) {
                         answerView(selectedOptionPosition, R.drawable.wrong_option_bg)
+                    } else {
+                        correctAnswers++
                     }
 
                     answerView(question.correctAnswer, R.drawable.correct_option_bg)
