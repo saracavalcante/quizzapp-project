@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import br.com.saradev.quizapp.R
 import br.com.saradev.quizapp.databinding.FragmentResultBinding
@@ -28,5 +29,15 @@ class ResultFragment : Fragment() {
 
         binding.tvResultName.text = args.username
         binding.tvResultScore.text = "Your score is ${args.correctAnswers} out of ${args.totalQuestions}"
+
+        setListener()
     }
+
+    private fun setListener() {
+        binding.btnSubmit.setOnClickListener {
+            val action = ResultFragmentDirections.actionResultFragmentToWelcomeFragment()
+            findNavController().navigate(action)
+        }
+    }
+
 }
