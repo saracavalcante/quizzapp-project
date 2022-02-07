@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import br.com.saradev.quizapp.R
 import br.com.saradev.quizapp.databinding.FragmentQuizBinding
@@ -25,7 +26,7 @@ class QuizFragment : Fragment(), View.OnClickListener {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View = FragmentQuizBinding.inflate(inflater, container, false).apply {
         _binding = this
     }.root
@@ -47,13 +48,19 @@ class QuizFragment : Fragment(), View.OnClickListener {
         binding.optionThree.setOnClickListener(this)
         binding.optionFour.setOnClickListener(this)
         binding.optionFive.setOnClickListener(this)
+        binding.btnSubmit.setOnClickListener(this)
     }
 
     private fun setQuestion() {
-        mCurrentPosition = 1
         val question = questionList!![mCurrentPosition - 1]
 
         defaultOptionsView()
+
+        if (mCurrentPosition == questionList!!.size) {
+            binding.btnSubmit.text = "Finish"
+        } else {
+            binding.btnSubmit.text = "Submit"
+        }
 
         binding.apply {
             tvQuestion.text = question!!.question
@@ -86,12 +93,13 @@ class QuizFragment : Fragment(), View.OnClickListener {
         for (option in options) {
             option.setTextColor(Color.parseColor("#333333"))
             option.typeface = Typeface.DEFAULT
-            option.background = context?.let { ContextCompat.getDrawable(it, R.drawable.default_option_border) }
+            option.background =
+                context?.let { ContextCompat.getDrawable(it, R.drawable.default_option_border) }
         }
     }
 
     override fun onClick(view: View?) {
-        when(view?.id) {
+        when (view?.id) {
             R.id.optionOne -> {
                 selectedOptionView(binding.optionOne, 1)
             }
@@ -107,6 +115,69 @@ class QuizFragment : Fragment(), View.OnClickListener {
             R.id.optionFive -> {
                 selectedOptionView(binding.optionFive, 5)
             }
+            R.id.btnSubmit -> {
+                if (selectedOptionPosition == 0) {
+                    mCurrentPosition++
+
+                    when {
+                        mCurrentPosition <= questionList!!.size -> {
+                            setQuestion()
+                        }
+                        else -> {
+                            Toast.makeText(context,
+                                "You successfuly completed the Quiz!",
+                                Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+                } else {
+                    val question = questionList?.get(mCurrentPosition - 1)
+
+                    if (question!!.correctAnswer != selectedOptionPosition) {
+                        answerView(selectedOptionPosition, R.drawable.wrong_option_bg)
+                    }
+
+                    answerView(question.correctAnswer, R.drawable.correct_option_bg)
+
+                    if (mCurrentPosition == questionList!!.size) {
+                        binding.btnSubmit.text = "Finish"
+                    } else {
+                        binding.btnSubmit.text = "Go to Next Question"
+                    }
+
+                    selectedOptionPosition = 0
+                }
+            }
+        }
+    }
+
+    private fun answerView(answer: Int, drawableView: Int) {
+        when (answer) {
+            1 -> {
+                binding.optionOne.background = context?.let {
+                    ContextCompat.getDrawable(it, drawableView)
+                }
+            }
+            2 -> {
+                binding.optionTwo.background = context?.let {
+                    ContextCompat.getDrawable(it, drawableView)
+                }
+            }
+            3 -> {
+                binding.optionThree.background = context?.let {
+                    ContextCompat.getDrawable(it, drawableView)
+                }
+            }
+            4 -> {
+                binding.optionFour.background = context?.let {
+                    ContextCompat.getDrawable(it, drawableView)
+                }
+            }
+            5 -> {
+                binding.optionFive.background = context?.let {
+                    ContextCompat.getDrawable(it, drawableView)
+                }
+            }
         }
     }
 
@@ -116,7 +187,8 @@ class QuizFragment : Fragment(), View.OnClickListener {
 
         tv.setTextColor(Color.parseColor("#243BB8"))
         tv.typeface = Typeface.DEFAULT_BOLD
-        tv.background = context?.let { ContextCompat.getDrawable(it, R.drawable.selected_option_border) }
+        tv.background =
+            context?.let { ContextCompat.getDrawable(it, R.drawable.selected_option_border) }
     }
 
     override fun onDestroyView() {

@@ -5,10 +5,12 @@
       <map>
         <entry key="..\:/Users/Sara/Documents/Estudos/Estudos 2021/Android/quizapp_project/app/src/main/res/drawable/bg_flag.xml" value="0.2703125" />
         <entry key="..\:/Users/Sara/Documents/Estudos/Estudos 2021/Android/quizapp_project/app/src/main/res/drawable/bg_input.xml" value="0.2703125" />
+        <entry key="..\:/Users/Sara/Documents/Estudos/Estudos 2021/Android/quizapp_project/app/src/main/res/drawable/correct_option_bg.xml" value="0.2" />
         <entry key="..\:/Users/Sara/Documents/Estudos/Estudos 2021/Android/quizapp_project/app/src/main/res/drawable/default_option_border.xml" value="0.10925925925925926" />
         <entry key="..\:/Users/Sara/Documents/Estudos/Estudos 2021/Android/quizapp_project/app/src/main/res/drawable/flag_background.xml" value="0.2703125" />
         <entry key="..\:/Users/Sara/Documents/Estudos/Estudos 2021/Android/quizapp_project/app/src/main/res/drawable/options_bg.xml" value="0.2703125" />
         <entry key="..\:/Users/Sara/Documents/Estudos/Estudos 2021/Android/quizapp_project/app/src/main/res/drawable/selected_option_border.xml" value="0.2703125" />
+        <entry key="..\:/Users/Sara/Documents/Estudos/Estudos 2021/Android/quizapp_project/app/src/main/res/drawable/wrong_option_bg.xml" value="0.17314814814814813" />
         <entry key="..\:/Users/Sara/Documents/Estudos/Estudos 2021/Android/quizapp_project/app/src/main/res/layout/activity_main.xml" value="0.1721014492753623" />
         <entry key="..\:/Users/Sara/Documents/Estudos/Estudos 2021/Android/quizapp_project/app/src/main/res/layout/fragment_quiz.xml" value="0.4" />
         <entry key="..\:/Users/Sara/Documents/Estudos/Estudos 2021/Android/quizapp_project/app/src/main/res/layout/fragment_quiz_2.xml" value="0.152" />
