@@ -9,8 +9,8 @@
 </p>
 <br>
 <p align="center">
-  :rocket: Projeto simples criado com o intuito de praticar e revisar alguns conceitos básicos do desenvolvimento Android com Kotlin.<br>
-  O app é um Quiz sobre as bandeiras de alguns países do mundo. No final o usuário consegue visualizar sua pontuação final.
+  :rocket: Projeto simples criado com o intuito de praticar e revisar alguns conceitos <br> básicos do desenvolvimento Android com Kotlin.
+  O app é um Quiz sobre as bandeiras de alguns <br> países do mundo. No final o usuário consegue visualizar sua pontuação final.
 </p>
 <h1 align="center">
     <img alt="QuizApp" title="#QuizApp" src="preview/screenshot.png" />
