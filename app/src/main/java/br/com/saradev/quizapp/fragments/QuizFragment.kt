@@ -3,6 +3,7 @@ package br.com.saradev.quizapp.fragments
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
+import android.text.method.Touch.scrollTo
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.widget.NestedScrollView
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import br.com.saradev.quizapp.R
@@ -57,18 +59,18 @@ class QuizFragment : Fragment(), View.OnClickListener {
     }
 
     private fun setQuestion() {
-        var question = questionList!![mCurrentPosition - 1]
+        val question = questionList!![mCurrentPosition - 1]
 
         defaultOptionsView()
 
         if (mCurrentPosition == questionList!!.size) {
-            binding.btnSubmit.text = "Finish"
+            binding.btnSubmit.text = getString(R.string.finish)
         } else {
-            binding.btnSubmit.text = "Submit"
+            binding.btnSubmit.text = getString(R.string.submit)
         }
 
         binding.apply {
-            tvQuestion.text = question!!.question
+            tvQuestion.text = question.question
             ivFlag.setImageResource(question.image)
 
             optionOne.text = question.optionOne
@@ -126,6 +128,7 @@ class QuizFragment : Fragment(), View.OnClickListener {
                         mCurrentPosition <= questionList!!.size -> {
                             setQuestion()
                             configureProgressBar()
+                            binding.scrollView.scrollTo(0, 0)
                         }
                         else -> {
                             val username = args.username
@@ -147,9 +150,9 @@ class QuizFragment : Fragment(), View.OnClickListener {
                     answerView(question.correctAnswer, R.drawable.correct_option_bg)
 
                     if (mCurrentPosition == questionList!!.size) {
-                        binding.btnSubmit.text = "Finish"
+                        binding.btnSubmit.text = getString(R.string.finish)
                     } else {
-                        binding.btnSubmit.text = "Go to Next Question"
+                        binding.btnSubmit.text = getString(R.string.next_question)
                     }
 
                     selectedOptionPosition = 0

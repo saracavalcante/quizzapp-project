@@ -9,4 +9,5 @@
     <string name="submit">Submit</string>
     <string name="your_result">Your Result</string>
     <string name="finish">Finish</string>
+    <string name="next_question">Go to Next Question</string>
 </resources>

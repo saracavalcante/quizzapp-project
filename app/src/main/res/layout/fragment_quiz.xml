@@ -6,9 +6,11 @@
     android:layout_height="wrap_content"
     android:background="@color/color_secondary"
     android:fillViewport="true"
+    android:id="@+id/scrollView"
     tools:context=".fragments.QuizFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="32dp" >
